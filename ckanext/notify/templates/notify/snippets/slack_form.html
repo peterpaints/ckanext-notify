@@ -22,8 +22,8 @@ then itself be extended to add/remove blocks of functionality. #}
     {{ form.input("slack_channel", id="field-channel", label=_("Slack Channel"), placeholder=_("eg. datarequest_activities"), value=slack_channel, error=errors['Channel'], classes=["control-medium"], is_required=true) }}
   {% endblock %}
 
-  <i class="icon-question-sign" style=" position: absolute; left: 95%; bottom: 37%;" title="{{webhook_title}}"></i>
-  <i class="icon-question-sign" style=" position: absolute; left: 61%; bottom: 25%;" title="{{channel_title}}"></i>
+  <i class="fa fa-question-circle" style=" position: absolute; left: 95%; bottom: 38%;" title="{{webhook_title}}"></i>
+  <i class="fa fa-question-circle" style=" position: absolute; left: 61%; bottom: 25%;" title="{{channel_title}}"></i>
 
   <div class="form-actions">
     {% block form_actions %}
