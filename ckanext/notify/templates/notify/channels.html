@@ -39,7 +39,7 @@
                 </a>
                 <a class="btn btn-danger btn-small" href="{{ h.url_for('delete_slack_form', id=channel.id, organization_id=channel.organization_id) }}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Delete') }}">
                   {% block delete_button_text %}
-                  <i class="fa fa-trash-o"></i>
+                  <i class="fa fa-times"></i>
                   {% endblock %}
                 </a>
               </div>
