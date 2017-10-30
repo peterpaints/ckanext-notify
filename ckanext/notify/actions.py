@@ -155,9 +155,6 @@ def slack_channel_show(context, data_dict):
     # Init the data base
     db.init_db(model)
 
-    # Check access
-    toolkit.check_access(constants.MANAGE_NOTIFICATIONS, context, data_dict)
-
     # Get the data request
     result = db.Org_Slack_Details.get(id=id)
     if not result:
@@ -325,9 +322,6 @@ def email_channel_show(context, data_dict):
 
     # Init the data base
     db.init_db(model)
-
-    # Check access
-    toolkit.check_access(constants.MANAGE_NOTIFICATIONS, context, data_dict)
 
     # Get the data request
     result = db.Org_Email_Details.get(id=id)
