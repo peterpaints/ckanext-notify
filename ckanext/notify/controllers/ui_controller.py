@@ -219,6 +219,7 @@ class DataRequestsNotifyUI(base.BaseController):
             self.post_email_form(constants.EMAIL_CHANNEL_UPDATE, context, id=id)
 
             c.group_dict = toolkit.get_action('organization_show')(context, {'id': organization_id})
+
             required_vars = \
                 {'data': c.email_data, 'errors': c.errors, 'errors_summary': c.errors_summary, 'new_form': new_form}
             return toolkit.render('notify/register_email.html', extra_vars=required_vars)
@@ -254,7 +255,6 @@ class DataRequestsNotifyUI(base.BaseController):
         DataRequest creation is sent a slack notification if an admin has
         added Slack as a notification channel.
         '''
-
         context = self._get_context()
         organization = result.get('organization', None)
         data_dict = {
