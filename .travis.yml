@@ -4,6 +4,6 @@ env: PGVERSION=9.1
 install:
     - pip install -r requirements.txt
     - pip install coveralls
-script: ckanext/notify/tests/test_ui_controller.py
+script: chmod=+x ckanext/notify/tests/test_ui_controller.py
 after_success:
     - coveralls
