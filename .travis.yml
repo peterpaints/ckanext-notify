@@ -7,6 +7,7 @@ env:
     - PGVERSION=9.1
 before_install:
   - chmod +x ckanext/notify/tests/test_ui_controller.py
+install: "pip install -r requirements.txt"
 script: python2.7 ckanext/notify/tests/test_ui_controller.py
 after_success:
   - coveralls
