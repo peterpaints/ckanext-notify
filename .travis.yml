@@ -7,6 +7,6 @@ env:
     - PGVERSION=9.1
 before_install:
   - chmod +x ckanext/notify/tests/test_ui_controller.py
-script: ckanext/notify/tests/test_ui_controller.py
+script: python2.7 ckanext/notify/tests/test_ui_controller.py
 after_success:
   - coveralls
