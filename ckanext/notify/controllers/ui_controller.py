@@ -264,13 +264,29 @@ class DataRequestsNotifyUI(base.BaseController):
 
         channels = toolkit.get_action(constants.SLACK_CHANNELS_SHOW)(context, data_dict)
         if channels:
-            extra_vars = {
+            # Bug: result shows the datarequest as open even when closed.
+            closed_datarequest = toolkit.get_action('datarequest_show')(context, {'id': result['id']})
+            accepted_dataset = closed_datarequest.get('accepted_dataset', None)
+            if accepted_dataset:
+                accepted_dataset_title = accepted_dataset['title']
+                accepted_dataset_url = config.get('ckan.site_url') + '/dataset/{}'.format(accepted_dataset['name'])
+                extra_vars = {
+                            'site_title': config.get('ckan.site_title'),
+                            'datarequest_url': result['datarequest_url'],
+                            'datarequest_title': result['title'],
+                            'datarequest_description': result['description'],
+                            'accepted_dataset': accepted_dataset_title,
+                            'accepted_dataset_url': accepted_dataset_url,
+                        }
+                slack_message = base.render_jinja2('notify/slack/datarequest_close_accepted_dataset.txt', extra_vars)
+            else:
+                extra_vars = {
                             'site_title': config.get('ckan.site_title'),
                             'datarequest_url': result['datarequest_url'],
                             'datarequest_title': result['title'],
                             'datarequest_description': result['description'],
                         }
-            slack_message = base.render_jinja2('notify/slack/{}.txt'.format(template), extra_vars)
+                slack_message = base.render_jinja2('notify/slack/{}.txt'.format(template), extra_vars)
 
             for channel in channels:
                 requests.post(
@@ -306,5 +322,5 @@ class DataRequestsNotifyUI(base.BaseController):
             email_body = base.render_jinja2('notify/email/{}.txt'.format(template), extra_vars)
 
             for channel in channels:
-                channel = dotdict(channel)              
+                channel = dotdict(channel)
                 mailer.mail_user(channel, email_subject, email_body)
