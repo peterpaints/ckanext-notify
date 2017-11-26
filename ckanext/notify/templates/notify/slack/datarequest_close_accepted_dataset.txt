@@ -1,0 +1,24 @@
+{"text": "*[CLOSED WITH ACCEPTED DATASET] Datarequest matched to dataset '{{ accepted_dataset }}' and closed on the Organization: {{ site_title }}*\n\nThe datarequest {{ datatrequest_title }} has been matched! {{ site_title }}. :muscle:\n\n",
+    "username": "datarequests-bot",
+    "icon_emoji": ":monkey_face:",
+    "attachments": [
+        {
+            "color": "danger",
+            "title": "Click me to view the matched dataset",
+            "title_link": "{{ accepted_dataset_url }}",
+            "text": "Datarequest title: {{ datarequest_title }}",
+            "thumb_url": "https://media.giphy.com/media/3o6Ei2uhPW2eRv4c8M/giphy.gif",
+            "fields": [
+                {
+                    "title": "Datarequest link",
+                    "value": "{{ datarequest_url }}",
+                    "short": true
+                },
+                {
+                    "title": "Organization",
+                    "value": "{{ site_title }}",
+                    "short": true
+                }
+            ]
+        }
+    ]}
